@@ -1,0 +1,31 @@
+{
+  "name": "vue-library",
+  "version": "1.0.0",
+  "description": "monitoring status page",
+  "keywords": [
+    "monitoring",
+    "vue.js",
+    "stencil"
+  ],
+  "author": "Délita Makanda <delita.makanda@gmail.com>",
+  "homepage": "https://github.com/delitamakanda/status-page-webcomponent#readme",
+  "license": "ISC",
+  "main": "lib/vue-library.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delitamakanda/status-page-webcomponent.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/vue-library.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/delitamakanda/status-page-webcomponent/issues"
+  }
+}
