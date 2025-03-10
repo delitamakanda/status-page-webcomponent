@@ -1,4 +1,5 @@
 import { Config } from '@stencil/core';
+import { vueOutputTarget } from '@stencil/vue-output-target';
 
 export const config: Config = {
   namespace: 'monitoring-components',
@@ -7,6 +8,10 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
+    vueOutputTarget({
+      componentCorePackage: 'monitoring-components',
+      proxiesFile: '../packages/vue-library/lib/components.ts',
+    }),
     {
       type: 'dist-custom-elements',
       customElementsExportBehavior: 'auto-define-custom-elements',

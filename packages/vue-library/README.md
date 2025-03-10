@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const vueLibrary = require('vue-library');
+const index = require('vue-library');
 
 // TODO: DEMONSTRATE API
 ```
