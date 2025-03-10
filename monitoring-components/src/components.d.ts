@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MonitoringAlert {
+        "message": string;
+        "type": string;
+    }
+    interface MonitoringChart {
+        "data": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +29,18 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLMonitoringAlertElement extends Components.MonitoringAlert, HTMLStencilElement {
+    }
+    var HTMLMonitoringAlertElement: {
+        prototype: HTMLMonitoringAlertElement;
+        new (): HTMLMonitoringAlertElement;
+    };
+    interface HTMLMonitoringChartElement extends Components.MonitoringChart, HTMLStencilElement {
+    }
+    var HTMLMonitoringChartElement: {
+        prototype: HTMLMonitoringChartElement;
+        new (): HTMLMonitoringChartElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +48,19 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "monitoring-alert": HTMLMonitoringAlertElement;
+        "monitoring-chart": HTMLMonitoringChartElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface MonitoringAlert {
+        "message"?: string;
+        "type"?: string;
+    }
+    interface MonitoringChart {
+        "data"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +76,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "monitoring-alert": MonitoringAlert;
+        "monitoring-chart": MonitoringChart;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +85,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "monitoring-alert": LocalJSX.MonitoringAlert & JSXBase.HTMLAttributes<HTMLMonitoringAlertElement>;
+            "monitoring-chart": LocalJSX.MonitoringChart & JSXBase.HTMLAttributes<HTMLMonitoringChartElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

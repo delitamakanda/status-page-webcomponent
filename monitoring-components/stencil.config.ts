@@ -12,11 +12,11 @@ export const config: Config = {
       componentCorePackage: 'monitoring-components',
       proxiesFile: '../packages/vue-library/lib/components.ts',
     }),
-    {
-      type: 'dist-custom-elements',
-      customElementsExportBehavior: 'auto-define-custom-elements',
-      externalRuntime: false,
-    },
+    // {
+    //   type: 'dist-custom-elements',
+    //   customElementsExportBehavior: 'auto-define-custom-elements',
+    //   externalRuntime: false,
+    // },
     {
       type: 'docs-readme',
     },
