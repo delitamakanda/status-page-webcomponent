@@ -25,8 +25,8 @@ export class MonitoringChart {
 
   renderChart(data) {
     const svg = d3.select(this.chartContainer).append('svg')
-      .attr('width', 600)
-     .attr('height', 400);
+      .attr('width', 300)
+     .attr('height', 200);
     svg.selectAll('rect')
       .data(data)
       .enter()

@@ -1,21 +1,30 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { useMonitoringStore} from "@/stores/monitoring.ts";
+const store = useMonitoringStore();
+const simulateData = () => {
+  const newMetrics = [
+    {
+      name: "CPU Usage",
+      value: Math.floor(Math.random() * 100),
+    },
+    {
+      name: "Memory Usage",
+      value: Math.floor(Math.random() * 100),
+    }
+  ]
+  store.updateMetrics(newMetrics);
+}
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
       <my-component first="Délita" last="Makanda"></my-component>
-      <HelloWorld msg="You did it!" />
+      <monitoring-chart :data="JSON.stringify(store.metrics)"></monitoring-chart>
+      <monitoring-alert v-if="store.alert" :message="store.alert.message" :type="store.alert.type"></monitoring-alert>
+      <button @click="simulateData">Simulate Data</button>
     </div>
   </header>
-
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
