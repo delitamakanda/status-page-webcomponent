@@ -1,28 +1,33 @@
 <script setup lang="ts">
 import { useMonitoringStore} from "@/stores/monitoring.ts";
+import { onMounted, ref } from "vue";
 const store = useMonitoringStore();
-const simulateData = () => {
-  const newMetrics = [
-    {
-      name: "CPU Usage",
-      value: Math.floor(Math.random() * 100),
-    },
-    {
-      name: "Memory Usage",
-      value: Math.floor(Math.random() * 100),
-    }
-  ]
-  store.updateMetrics(newMetrics);
-}
+const chartLoaded = ref(false);
+onMounted(() => {
+  store.getMetrics();
+  store.getHealth();
+  chartLoaded.value = true;
+});
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <my-component first="Délita" last="Makanda"></my-component>
-      <monitoring-chart :data="JSON.stringify(store.metrics)"></monitoring-chart>
+      <div v-if="!chartLoaded">Loading...</div>
+      <div v-else-if="!store?.metrics || store.metrics.length === 0">No metrics available</div>
+      <div v-else v-for="(data, index) in store?.metrics" :key="index">
+        <h2>{{ index +1}} {{data?.name}}</h2>
+        <monitoring-chart :data="JSON.stringify(data)"></monitoring-chart>
+      </div>
+
       <monitoring-alert v-if="store.alert" :message="store.alert.message" :type="store.alert.type"></monitoring-alert>
-      <button @click="simulateData">Simulate Data</button>
+      <p>Version: {{ store?.version }}</p>
+     <p>Docker: {{ store?.docker }}</p>
+      <h4>Debug informations</h4>
+      <pre>{{ store?.metrics }}</pre>
+      <pre>{{ store?.health }}</pre>
+
     </div>
   </header>
 </template>
